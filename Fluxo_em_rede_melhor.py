@@ -36,7 +36,7 @@ for i,j in custo.keys():
 
 x = {}
 for i,j,data in G.edges(data=True):
-    x[(i,j)] = m.addVar(obj = data["custo"], lb = 0.0, vtype = gb.GRB.CONTINUOUS)
+    x[(i,j)] = m.addVar(obj = data["custo"], lb = 0.0, vtype = gb.GRB.CONTINUOUS,name=f"x{i}{j}")
 
 
 #Restrição: x(i,v) - x(v,j) = (Saída de v) - (Entrada de v)

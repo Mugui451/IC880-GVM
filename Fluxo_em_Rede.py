@@ -36,7 +36,7 @@ for i,j in custo.keys():
 
 x = {}
 for i,j,data in G.edges(data=True):
-    x[(i,j)] = m.addVar(obj = data["custo"], lb = 0.0, vtype = gb.GRB.INTEGER)
+    x[(i,j)] = m.addVar(obj = data["custo"], lb = 0.0, vtype = gb.GRB.CONTINUOUS)
 
 
 #Restrição: x(i,v) - x(v,j) = (Saída de v) - (Entrada de v)
@@ -46,7 +46,7 @@ for v in range(1,5):
 
 #Restrição: Capacidade = 15
 for(i,j) in G.edges():
-    m.addConstr(x[(i,j)] <= 15)
+    m.addConstr(x[(i,j)] <= 1)
 
 #Objetivo: Minimizar custo total
 m.setObjective(gb.quicksum(data["custo"]*x[(i,j)] for i,j,data in G.edges(data=True)),GRB.MINIMIZE)
